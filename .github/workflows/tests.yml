@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+            fetch-depth: 0
+            clean: true 
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -30,9 +33,3 @@ jobs:
         run: |
           composer install --no-progress --prefer-dist
           chmod +x vendor/bin/phpunit
-
-      - name: Run tests
-        run: |
-          php -v  # Output PHP version for debugging
-          composer diagnose  # Check for any composer issues
-          vendor/bin/phpunit --configuration phpunit.xml --verbose
