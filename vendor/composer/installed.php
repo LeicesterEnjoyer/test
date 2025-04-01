@@ -3,7 +3,7 @@
         'name' => 'leicestercityenjoyer/test',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '4d028f274a55d0c07d034f34fd5a673a43f77517',
+        'reference' => 'ddc664efcbf8808f2d4e27af7fea01c058eae111',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'leicestercityenjoyer/test' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '4d028f274a55d0c07d034f34fd5a673a43f77517',
+            'reference' => 'ddc664efcbf8808f2d4e27af7fea01c058eae111',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
