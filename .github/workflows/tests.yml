@@ -33,6 +33,10 @@ jobs:
           composer clear-cache
           composer install --no-interaction
 
+      - name: Make PHPUnit executable (Linux only)
+        if: runner.os == 'Linux'
+        run: chmod +x vendor/bin/phpunit
+
       - name: Run tests
         run: |
           vendor/bin/phpunit
