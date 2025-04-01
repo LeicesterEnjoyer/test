@@ -30,13 +30,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer clear-cache
           composer install --no-interaction
 
       - name: Make PHPUnit executable (Linux only)
         if: runner.os == 'Linux'
         run: chmod +x vendor/bin/phpunit
 
-      - name: Run tests
+      - name: Run PHPUnit tests
         run: |
-          vendor/bin/phpunit
+          vendor/bin/phpunit --configuration phpunit.xml
