@@ -10,32 +10,29 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php-version: [8.2, 8.3]
-        
+        php: [8.2, 8.3]
+    runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
-          extensions: mbstring, dom, xml
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, intl
           coverage: none
 
       - name: Install dependencies
         run: |
-          composer install --no-interaction
+          composer install --no-progress --prefer-dist
+          chmod +x vendor/bin/phpunit
 
-      - name: Make PHPUnit executable (Linux only)
-        if: runner.os == 'Linux'
-        run: chmod +x vendor/bin/phpunit
-
-      - name: Run PHPUnit tests
+      - name: Run tests
         run: |
-          vendor/bin/phpunit --configuration phpunit.xml
+          php -v  # Output PHP version for debugging
+          composer diagnose  # Check for any composer issues
+          vendor/bin/phpunit --configuration phpunit.xml --verbose
